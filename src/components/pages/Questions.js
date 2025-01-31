@@ -22,7 +22,7 @@ const Questions = () => {
   const [selectedQuestionId, setSelectedQuestionId] = useState(null);
   const limit = 10;
   const isLoading = false;
-  const data = [{}];
+  // const data = [{}];
   // const { data, refetch } = useGetQuestionsQuery({
   //   limit,
   //   page: currentPage,
@@ -51,6 +51,30 @@ const Questions = () => {
   // const selectProfession = (event) => {
   //   setSelectedDesignation(event.target.value);
   // };
+
+  const data = {
+    offers: [
+      {
+        _id: "1",
+        title: "50% Off on Electronics",
+        description: "Get up to 50% off on selected electronic items.",
+        offerId: "OFF123",
+      },
+      {
+        _id: "2",
+        title: "Buy 1 Get 1 Free",
+        description: "Applicable on all fashion categories.",
+        offerId: "OFF456",
+      },
+      {
+        _id: "3",
+        title: "20% Cashback on Orders",
+        description: "Get 20% cashback on prepaid orders.",
+        offerId: "OFF789",
+      },
+    ],
+  };
+  
 
   const onSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission
@@ -223,7 +247,7 @@ const Questions = () => {
         </span>
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto mt-6">
+        {/* <table className="min-w-full table-auto mt-6">
           <thead className=" bg-white border-gray-400 border-t-[2px] border-l-[2px] border-r-[2px] border-b-[2px]">
             <tr>
               <th className="px-4 py-4 text-left border-r border-gray-400">No</th>
@@ -264,7 +288,41 @@ const Questions = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
+
+<table className="min-w-full table-auto mt-6">
+  <thead className="bg-white border-gray-400 border-[2px]">
+    <tr>
+      <th className="px-4 py-4 text-left border-r border-gray-400">No</th>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Title</th>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Description</th>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Offer Id</th>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Action</th>
+    </tr>
+  </thead>
+  <tbody className="border-[2px] border-opacity-50 border-[#969696]">
+    {data?.offers?.map((offer, index) => (
+      <tr
+        onClick={() => navigate(`/offers/${offer?._id}`)}
+        className="odd:bg-teal-100 even:bg-white border-[2px] border-opacity-50 border-[#969696]"
+        key={index}
+      >
+        <td className="px-4 py-2 border-r border-gray-400">{index + 1}</td>
+        <td className="px-4 py-2 border-r border-gray-400">{offer?.title}</td>
+        <td className="px-4 py-2 border-r border-gray-400">{offer?.description}</td>
+        <td className="px-4 py-2 border-r border-gray-400">{offer?.offerId}</td>
+        <td className="px-4 py-2 border-r border-gray-400">
+          <button onClick={() => handleEditClick(offer)}>
+            <img alt="edit" src="/icons/edit.svg" className="w-6 h-6 mr-2" />
+          </button>
+          <button onClick={() => handleDeleteClick(offer?._id)}>
+            <img alt="delete" src="/icons/delete.svg" className="w-6 h-6 mr-2 fill-red-500" />
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
         <div className="flex justify-end">   <Pagination
           itemsPerPage={limit}
           currentPage={currentPage}

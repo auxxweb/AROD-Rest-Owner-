@@ -23,7 +23,61 @@ const Zones = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
   const isLoading = false;
-  const data = [{}];
+  const data = [
+    {
+      slNo: 1,
+      orderId: "ORD12345",
+      orderTime: "2024-01-31 12:30 PM",
+      tableNo: "T5",
+    },
+    {
+      slNo: 2,
+      orderId: "ORD12346",
+      orderTime: "2024-01-31 12:45 PM",
+      tableNo: "T2",
+    },
+    {
+      slNo: 3,
+      orderId: "ORD12347",
+      orderTime: "2024-01-31 1:00 PM",
+      tableNo: "T8",
+    },
+    {
+      slNo: 4,
+      orderId: "ORD12348",
+      orderTime: "2024-01-31 1:15 PM",
+      tableNo: "T1",
+    },
+  ];
+
+
+  const orderData = [
+    {
+      orderNo: 1,
+      orderId: "ORD1001",
+      orderTime: "2024-01-31 12:30 PM",
+      tableNumber: "T5",
+    },
+    {
+      orderNo: 2,
+      orderId: "ORD1002",
+      orderTime: "2024-01-31 12:45 PM",
+      tableNumber: "T2",
+    },
+    {
+      orderNo: 3,
+      orderId: "ORD1003",
+      orderTime: "2024-01-31 1:00 PM",
+      tableNumber: "T8",
+    },
+    {
+      orderNo: 4,
+      orderId: "ORD1004",
+      orderTime: "2024-01-31 1:15 PM",
+      tableNumber: "T1",
+    },
+  ];
+  
   // const { data, isLoading, refetch } = useGetZonesQuery({
   //   limit,
   //   page: currentPage,
@@ -40,22 +94,21 @@ const Zones = () => {
   };
 
   const onSubmit = async (event) => {
-    
     event.preventDefault(); // Prevent the default form submission
     const formData = new FormData(event.target); // Make sure event.target is the form
     const name = formData.get("name"); // Get email input value
     const description = formData.get("description");
-    const body ={
+    const body = {
       name,
-      description
-    }
+      description,
+    };
     try {
       if (editPopupData) {
         formData.append("zoneId", editPopupData?._id);
-      const editBody={
-        ...body,
-        zoneId:editPopupData?._id
-      }
+        const editBody = {
+          ...body,
+          zoneId: editPopupData?._id,
+        };
         const res = await EditZone?.(editBody);
         if (res?.data?.success) {
           // refetch({ page: 1 });
@@ -73,8 +126,6 @@ const Zones = () => {
           });
         }
       } else {
-
-        
         const res = await addZone?.(body);
         if (res?.data?.success) {
           // refetch();
@@ -159,15 +210,14 @@ const Zones = () => {
     setCurrentPage(page);
   };
 
-  const handleCopy = async (value,mainJudge) => {
-    if(mainJudge){
-
+  const handleCopy = async (value, mainJudge) => {
+    if (mainJudge) {
       setCopied(value);
       copy(PUBLIC_USER_FRONTEND_URL + "/participant/" + value);
       setTimeout(() => {
         setCopied("");
       }, 2000);
-    }else{
+    } else {
       toast.error("Please add at least one main judge in this zone.", {
         position: "top-right",
         duration: 2000,
@@ -185,12 +235,12 @@ const Zones = () => {
         <h2 className="text-2xl font-semibold text-gray-700">New Orders</h2>
         <div className="ml-auto flex items-center space-x-4">
           <span className="flex items-center">
-            {/* <span
+            <span
               className="bg-[#808080] hover:bg-[#F8BF40] text-white rounded-3xl pt-2 pb-2 pl-4 pr-4 cursor-pointer"
               onClick={toggleModal}
             >
-            Add Zone
-            </span> */}
+              Add Zone
+            </span>
 
             <Modal
               isVisible={isModalVisible}
@@ -250,7 +300,7 @@ const Zones = () => {
                 Are you sure want to Delete?
               </h3>
               <h3 className="flex justify-center self-center text-md font-bold">
-              This will also delete the judges and participants in this zone.
+                This will also delete the judges and participants in this zone.
               </h3>
               <div className="flex justify-center p-6">
                 <button
@@ -290,70 +340,138 @@ const Zones = () => {
         </span>
       </div>
 
-      <table className="min-w-full table-auto mt-6 border-collapse">
-  <thead className="bg-white border-gray-400 border-t-[2px] border-l-[2px] border-r-[2px] border-b-[2px]">
-    <tr>
-      <th className="px-4 py-4 text-left border-r border-gray-400">Sl No</th>
-      <th className="px-4 py-4 text-left border-r border-gray-400">Order ID</th>
-      <th className="px-4 py-4 text-left border-r border-gray-400">Order Time</th>
-      <th className="px-4 py-4 text-left border-r border-gray-400">Table No.</th>
-      <th className="px-4 py-4 text-left">Action</th>
-    </tr>
-  </thead>
-  <tbody className="border-[2px] border-opacity-70 border-[#969696]">
-    {isLoading ? (
-      <>Loading...</>
-    ) : (
-      data?.zones?.map((zone, index) => (
+      {/* <table className="min-w-full table-auto mt-6 border-collapse">
+        <thead className="bg-white border-gray-400 border-t-[2px] border-l-[2px] border-r-[2px] border-b-[2px]">
+          <tr>
+            <th className="px-4 py-4 text-left border-r border-gray-400">
+              Sl No
+            </th>
+            <th className="px-4 py-4 text-left border-r border-gray-400">
+              Order ID
+            </th>
+            <th className="px-4 py-4 text-left border-r border-gray-400">
+              Order Time
+            </th>
+            <th className="px-4 py-4 text-left border-r border-gray-400">
+              Table No.
+            </th>
+            <th className="px-4 py-4 text-left">Action</th>
+          </tr>
+        </thead>
+        <tbody className="border-[2px] border-opacity-70 border-[#969696]">
+          {isLoading ? (
+            <>Loading...</>
+          ) : (
+            data?.map((zone, index) => (
+              <tr
+                className="odd:bg-teal-100 even:bg-grey border-[2px] border-opacity-50 border-[#9e9696]"
+                key={index}
+              >
+                <td className="px-4 py-2 border-r border-gray-400">
+                  {index + 1}
+                </td>
+                <td
+                  style={{ cursor: "pointer" }}
+                  className="px-4 py-2 border-r border-gray-400"
+                >
+                  <u
+                    style={{ cursor: "pointer" }}
+                    onMouseOver={({ target }) => (target.style.color = "blue")}
+                    onMouseOut={({ target }) => (target.style.color = "black")}
+                  >
+                    {zone?.slNo}
+                  </u>
+                </td>
+                <td className="px-4 py-2 border-r border-gray-400">
+                  <button
+                    className="flex text-black items-center space-x-1"
+                    onClick={() => handleCopy(zone?._id, zone?.orderId)}
+                  >
+                    {copied === zone?._id ? (
+                      <LuCopyCheck title="Copied" className="h-6 w-6" />
+                    ) : (
+                      <IoMdCopy title="Copy" className="h-6 w-6" />
+                    )}
+                    <span className="text-[#1F5EE7]">Competition Link</span>
+                  </button>
+                </td>
+                <td className="px-4 py-2 border-r border-gray-400">
+                  <div className="flex -space-x-2">{zone?.orderTime}</div>
+                </td>
+                <td className="px-4 py-2">
+                  <button onClick={() => handleEditClick(zone)}>
+                    <img
+                      alt="pics"
+                      src="/icons/edit.svg"
+                      className="w-6 h-6 rounded-full mr-2"
+                    />
+                  </button>
+                  <button onClick={() => handleDeleteClick(zone?._id)}>
+                    <img
+                      alt="pics"
+                      src="/icons/delete.svg"
+                      className="w-6 h-6 rounded-full mr-2 fill-red-500"
+                      style={{
+                        filter:
+                          "invert(20%) sepia(94%) saturate(7496%) hue-rotate(347deg) brightness(102%) contrast(104%)",
+                      }}
+                    />
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table> */}
+
+<table className="min-w-full table-auto mt-6 border-collapse">
+    <thead className="bg-white border-gray-400 border-2">
+      <tr>
+        <th className="px-4 py-4 text-left border-r border-gray-400">
+          Order No
+        </th>
+        <th className="px-4 py-4 text-left border-r border-gray-400">
+          Order ID
+        </th>
+        <th className="px-4 py-4 text-left border-r border-gray-400">
+          Order Time
+        </th>
+        <th className="px-4 py-4 text-left border-r border-gray-400">
+          Table Number
+        </th>
+        <th className="px-4 py-4 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody className="border-2 border-opacity-70 border-gray-400">
+      {orderData.map((order, index) => (
         <tr
-          className="odd:bg-teal-100 even:bg-grey border-[2px] border-opacity-50 border-[#9e9696]"
+          className="odd:bg-teal-100 even:bg-gray-200 border-2 border-gray-400"
           key={index}
         >
-          <td className="px-4 py-2 border-r border-gray-400">{index + 1}</td>
-          <td style={{cursor:"pointer"}} className="px-4 py-2 border-r border-gray-400"> 
-          <u style={{cursor:"pointer"}} onMouseOver={({target})=>target.style.color="blue"}
-    onMouseOut={({target})=>target.style.color="black"}
->{zone?.name}</u>
-          </td>
-          <td className="px-4 py-2 border-r border-gray-400">
-            <button
-              className="flex text-black items-center space-x-1"
-              onClick={() => handleCopy(zone?._id,zone?.mainJudge)}
-            >
-              {copied === zone?._id ? (
-                <LuCopyCheck title="Copied" className="h-6 w-6" />
-              ) : (
-                <IoMdCopy title="Copy" className="h-6 w-6" />
-              )}
-              <span className="text-[#1F5EE7]">Competition Link</span>
+          <td className="px-4 py-2 border-r border-gray-400">{order.orderNo}</td>
+          <td className="px-4 py-2 border-r border-gray-400">{order.orderId}</td>
+          <td className="px-4 py-2 border-r border-gray-400">{order.orderTime}</td>
+          <td className="px-4 py-2 border-r border-gray-400">{order.tableNumber}</td>
+          <td className="px-4 py-2 flex space-x-2">
+            <button onClick={() => handleEditClick(order)}>
+              <img alt="edit" src="/icons/edit.svg" className="w-6 h-6" />
             </button>
-          </td>
-          <td className="px-4 py-2 border-r border-gray-400">
-            <div className="flex -space-x-2">{zone?.description}</div>
-          </td>
-          <td className="px-4 py-2">
-            <button onClick={() => handleEditClick(zone)}>
+            <button onClick={() => handleDeleteClick(order.orderId)}>
               <img
-                alt="pics"
-                src="/icons/edit.svg"
-                className="w-6 h-6 rounded-full mr-2"
-              />
-            </button>
-            <button onClick={() => handleDeleteClick(zone?._id)}>
-              <img
-                alt="pics"
+                alt="delete"
                 src="/icons/delete.svg"
-                className="w-6 h-6 rounded-full mr-2 fill-red-500"
-                style={{ filter: "invert(20%) sepia(94%) saturate(7496%) hue-rotate(347deg) brightness(102%) contrast(104%)" }} 
+                className="w-6 h-6"
+                style={{
+                  filter:
+                    "invert(20%) sepia(94%) saturate(7496%) hue-rotate(347deg) brightness(102%) contrast(104%)",
+                }}
               />
             </button>
           </td>
         </tr>
-      ))
-    )}
-  </tbody>
-</table>
-
+      ))}
+    </tbody>
+  </table>
 
       <div className="m-auto flex justify-end">
         <Pagination

@@ -76,7 +76,7 @@ function Sidebar({ isOpen, setIsOpen }) {
           </span>
         </div>
         <div
-          onClick={() => navigate("/zones")}
+          onClick={() => navigate("/orders")}
           className={`cursor-pointer flex items-center ${
             location?.pathname?.split("/")[1] === "zones"
               ? "text-[#000000]"
@@ -109,7 +109,7 @@ fill={
         </div>
 
         <div
-          onClick={() => navigate("/judges")}
+          onClick={() => navigate("/menu")}
           className={`cursor-pointer flex items-center ${
             location?.pathname?.split("/")[1] === "judges"
               ? "text-[#000000]"
@@ -143,7 +143,7 @@ fill={
           </span>
         </div>
         <div
-          onClick={() => navigate("/participants")}
+          onClick={() => navigate("/table-management")}
           className={`cursor-pointer flex items-center ${
             location?.pathname?.split('/')[1] === "participants"
               ? "text-[#000000]"
@@ -178,7 +178,7 @@ fill={
           </span>
         </div>
         <div
-          onClick={() => navigate("/questions")}
+          onClick={() => navigate("/offers")}
           className={`cursor-pointer flex items-center ${
             location?.pathname?.split('/')[1] === "questions"
               ? "text-[#000000]"
@@ -212,7 +212,7 @@ fill={
           </span>
         </div>
         <div
-          onClick={() => navigate("/bundles")}
+          onClick={() => navigate("/settings")}
           className={`cursor-pointer flex items-center ${
             location?.pathname?.split('/')[1] === "bundles"
               ? "text-[#000000]"

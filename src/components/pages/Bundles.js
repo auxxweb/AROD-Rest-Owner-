@@ -49,7 +49,12 @@ const Bundles = () => {
   const [deleteBundle, { isLoading: isLoadingDelete }] =
     useDeleteBundleMutation();
   const [editBundle, { isLoading: isLoadingEdit }] = useEditBundleMutation();
-
+  const [darkMode, setDarkMode] = useState(false);
+  const [notifications, setNotifications] = useState({
+    email: true,
+    sms: false,
+    push: true,
+  });
   useEffect(() => {
     // refetchQuestions();
     // refetch();
@@ -292,7 +297,7 @@ const Bundles = () => {
         </span>
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto mt-6">
+        {/* <table className="min-w-full table-auto mt-6">
           <thead className="bg-white border-gray-400 border-t-[2px] border-l-[2px] border-r-[2px] border-b-[2px] ">
             <tr className="">
               <th className="px-4 py-2 border-r border-gray-400 text-left font-medium">
@@ -369,7 +374,52 @@ const Bundles = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
+         <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <h2 className="text-2xl font-semibold mb-4">Settings</h2>
+
+      {/* Profile Settings */}
+      <section className="mb-6">
+        <h3 className="text-xl font-medium mb-2">Profile Settings</h3>
+        <div className="space-y-2">
+          <input type="text" placeholder="Full Name" className="w-full border p-2 rounded" />
+          <input type="email" placeholder="Email Address" className="w-full border p-2 rounded" />
+          <button className="px-4 py-2 bg-blue-600 text-white rounded">Update Profile</button>
+        </div>
+      </section>
+
+      {/* Notification Settings */}
+      <section className="mb-6">
+        <h3 className="text-xl font-medium mb-2">Notification Settings</h3>
+        <label className="flex items-center space-x-2">
+          <input type="checkbox" checked={notifications.email} onChange={() => setNotifications({ ...notifications, email: !notifications.email })} />
+          <span>Email Notifications</span>
+        </label>
+        <label className="flex items-center space-x-2">
+          <input type="checkbox" checked={notifications.sms} onChange={() => setNotifications({ ...notifications, sms: !notifications.sms })} />
+          <span>SMS Notifications</span>
+        </label>
+        <label className="flex items-center space-x-2">
+          <input type="checkbox" checked={notifications.push} onChange={() => setNotifications({ ...notifications, push: !notifications.push })} />
+          <span>Push Notifications</span>
+        </label>
+      </section>
+
+      {/* Security Settings */}
+      <section className="mb-6">
+        <h3 className="text-xl font-medium mb-2">Security</h3>
+        <button className="px-4 py-2 bg-red-600 text-white rounded">Change Password</button>
+      </section>
+
+      {/* Preferences */}
+      <section className="mb-6">
+        <h3 className="text-xl font-medium mb-2">Preferences</h3>
+        <label className="flex items-center space-x-2">
+          <input type="checkbox" checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+          <span>Enable Dark Mode</span>
+        </label>
+      </section>
+    </div>
         <div className="w-full flex justify-end">
           <Pagination
             itemsPerPage={limit}

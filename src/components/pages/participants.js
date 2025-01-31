@@ -33,7 +33,7 @@ const Participants = () => {
   const [searchValue, setSearchValue] = useState("");
   const limit = 10;
   const isLoading = false;
-  const data = [{}];
+  // const data = [{}];
   const zoneList = [{}];
   const [deleteParticipant, { isLoading: isLoadingDelete }] =
     useDeleteParticipantMutation();
@@ -56,6 +56,39 @@ const Participants = () => {
     setIsModalVisible(!isModalVisible);
   };
 
+
+  const data = {
+    menu: [
+      {
+        _id: "1",
+        name: "Burger",
+        image: "https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVsaWNpb3VzJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
+        zone: { name: "North" },
+        email: "contact@burger.com",
+      },
+      {
+        _id: "2",
+        name: "Pizza",
+        image: "https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVsaWNpb3VzJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
+        zone: { name: "West" },
+        email: "contact@pizza.com",
+      },
+      {
+        _id: "3",
+        name: "Pasta",
+        image: "https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVsaWNpb3VzJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
+        zone: { name: "South" },
+        email: "contact@pasta.com",
+      },
+      {
+        _id: "4",
+        name: "Pasta",
+        image: "https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVsaWNpb3VzJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
+        zone: { name: "South" },
+        email: "contact@pasta.com",
+      },
+    ],
+  };
   const toggleFilterPopup = () => {
     setIsFilterPopupOpen(!isFilterPopupOpen);
   };
@@ -499,7 +532,7 @@ const Participants = () => {
           </span>
         </div>
       </div>
-      <table className="min-w-full table-auto mt-6">
+      {/* <table className="min-w-full table-auto mt-6">
         <thead  className="bg-white border-gray-400 border-t-[2px] border-l-[2px] border-r-[2px] border-b-[2px]">
           <tr>
             <th className="px-4 py-4 text-left border-r border-gray-400">Sl No</th>
@@ -575,7 +608,71 @@ const Participants = () => {
             ))
           )}
         </tbody>
-      </table>
+      </table> */}
+
+<table className="min-w-full table-auto mt-6">
+  <thead className="bg-white border-gray-400 border-t-[2px] border-l-[2px] border-r-[2px] border-b-[2px]">
+    <tr>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Sl No</th>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Image</th>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Name</th>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Category</th>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Price</th>
+      <th className="px-4 py-4 text-left border-r border-gray-400">Status</th>
+      <th className="px-4 py-4 text-left">Action</th>
+    </tr>
+  </thead>
+  <tbody className="border-[2px] border-opacity-50 border-[#969696]">
+    {isLoading ? (
+      <>Loading...</>
+    ) : (
+      data?.menu?.map((menuItem, index) => (
+        <tr
+          className="odd:bg-teal-100 even:bg-grey border-[2px] border-opacity-50 border-[#9e9696]"
+          key={index}
+        >
+          <td className="px-4 py-2 border-r border-gray-400">{index + 1}</td>
+          <td className="px-4 py-2 border-r border-gray-400">
+            <img
+              alt="img"
+              src={menuItem?.image }
+              className="w-14 h-14 rounded-full mr-2 mt-2"
+            />
+          </td>
+          <td className="px-4 py-2 border-r border-gray-400">
+            <u
+              style={{ cursor: "pointer" }}
+              onMouseOver={({ target }) => (target.style.color = "blue")}
+              onMouseOut={({ target }) => (target.style.color = "black")}
+            >
+              {menuItem?.name}
+            </u>
+          </td>
+          <td className="px-4 py-2 border-r border-gray-400">{menuItem?.category}Take Away</td>
+          <td className="px-4 py-2 border-r border-gray-400">${menuItem?.price}299</td>
+          <td className="px-4 py-2 border-r border-gray-400">
+            <button
+              // onClick={() => handleToggleStatus(menuItem?._id)}
+              className={`py-2 px-5 flex space-x-2 items-center ${
+                menuItem?.isAvailable ? "text-green-600 border-green-600" : "text-red-600 border-red-600"
+              } rounded-full border`}
+            >
+              <span>{menuItem?.isAvailable ? "Available" : "Unavailable"}</span>
+            </button>
+          </td>
+          <td className="px-4 py-2 border-r border-gray-400">
+            <button onClick={() => handleEditClick(menuItem)}>
+              <img alt="edit" src="/icons/edit.svg" className="w-6 h-6 rounded-full mr-2" />
+            </button>
+            <button onClick={() => handleDeleteClick(menuItem?._id)}>
+              <img alt="delete" src="/icons/delete.svg" className="w-6 h-6 rounded-full mr-2 fill-red-500" />
+            </button>
+          </td>
+        </tr>
+      ))
+    )}
+  </tbody>
+</table>
       {/* <div className="flex flex-wrap justify-center mt-4">
         <EmpCard
           cardArray={data?.participant}

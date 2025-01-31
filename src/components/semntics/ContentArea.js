@@ -36,14 +36,14 @@ function ContentArea() {
       <Route path="/login" element={<Login />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
       <Route path="/changePassword/:forgotId" element={<ChangePassword />} />
-      <Route path="/zones" element={<Zones />} />
-      <Route path="/judges" element={<Judges />} />
+      <Route path="/orders" element={<Zones />} />
+      <Route path="/menu" element={<Judges />} />
       <Route path="/judges/:id" element={<JudgeDetails />} />
-      <Route path="/participants" element={<Participants />} />
+      <Route path="/table-management" element={<Participants />} />
       <Route path="/participants/:id" element={<ParticipantDetails />} />
-      <Route path="/questions" element={<Questions />} />
+      <Route path="/offers" element={<Questions />} />
       <Route path="/questions/:id" element={<QuestionDetails />} />
-      <Route path="/bundles" element={<Bundles />} />
+      <Route path="/settings" element={<Bundles />} />
       <Route path="/bundles/:id" element={<BundleDetails />} />
       <Route path="/result" element={<ResponseAndResult />} />
       <Route path="/result/:id" element={<ResultDetails />} />

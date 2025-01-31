@@ -47,6 +47,8 @@ const Judges = () => {
   //   search: searchValue,
   //   zones: selectedZones,
   // });
+
+  
   const { data: zoneList, refetch: ZoneListsRefetch } = useGetZonesListQuery();
   const [addJudge, { isLoading: isLoadingMutation }] = useAddJudgeMutation({});
   const [deleteJudge, { isLoading: isLoadingDelete }] =
@@ -61,6 +63,33 @@ const Judges = () => {
   useEffect(() => {
     // ZoneListsRefetch();
   }, []);
+
+  const menuData = [
+    {
+      id: "M001",
+      image: "https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVsaWNpb3VzJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
+      name: "Cheese Burger",
+      category: "Fast Food",
+      price: "$5.99",
+      available: true,
+    },
+    {
+      id: "M002",
+      image: "https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVsaWNpb3VzJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
+      name: "Pepperoni Pizza",
+      category: "Italian",
+      price: "$8.99",
+      available: false,
+    },
+    {
+      id: "M003",
+      image: "https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVsaWNpb3VzJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3Dg",
+      name: "Pasta Alfredo",
+      category: "Italian",
+      price: "$7.49",
+      available: true,
+    },
+  ];
 
   const onSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission
@@ -293,7 +322,7 @@ const Judges = () => {
               className="bg-[#808080] hover:bg-[#F8BF40] text-white rounded-3xl pt-2 pb-2 pl-4 pr-4 cursor-pointer"
               onClick={toggleModal}
             >
-              Add Judge
+              Add Menu
             </span>
 
             <Modal
@@ -619,7 +648,7 @@ const Judges = () => {
         </div>
       </div>
 
-      <table className="min-w-full table-auto mt-6">
+      {/* <table className="min-w-full table-auto mt-6">
         <thead className="bg-white border-gray-400 border-t-[2px] border-l-[2px] border-r-[2px] border-b-[2px]">
           <tr>
             <th className="px-4 py-4 text-left border-r border-gray-400">
@@ -638,7 +667,7 @@ const Judges = () => {
               Email
             </th>
             <th className="px-4 py-4 text-left border-r border-gray-400">
-              Main Judge
+              Main Menu
             </th>
             <th className="px-4 py-4 text-left border-r border-gray-400">
               Password
@@ -769,7 +798,60 @@ const Judges = () => {
             ))
           )}
         </tbody>
-      </table>
+      </table> */}
+
+<table className="min-w-full table-auto mt-6 border-collapse">
+    <thead className="bg-white border-gray-400 border-2">
+      <tr>
+        <th className="px-4 py-4 text-left border-r border-gray-400">Sl No</th>
+        <th className="px-4 py-4 text-left border-r border-gray-400">Image</th>
+        <th className="px-4 py-4 text-left border-r border-gray-400">Name</th>
+        <th className="px-4 py-4 text-left border-r border-gray-400">Category</th>
+        <th className="px-4 py-4 text-left border-r border-gray-400">Price</th>
+        <th className="px-4 py-4 text-left border-r border-gray-400">Available</th>
+        <th className="px-4 py-4 text-left">Action</th>
+      </tr>
+    </thead>
+    <tbody className="border-2 border-opacity-70 border-gray-400">
+      {menuData.map((item, index) => (
+        <tr
+          className="odd:bg-teal-100 even:bg-gray-200 border-2 border-gray-400"
+          key={item.id}
+        >
+          <td className="px-4 py-2 border-r border-gray-400">{index + 1}</td>
+          <td className="px-4 py-2 border-r border-gray-400">
+            <img
+              alt="menu-item"
+              src={item.image}
+              className="w-14 h-14 rounded-md"
+            />
+          </td>
+          <td className="px-4 py-2 border-r border-gray-400">{item.name}</td>
+          <td className="px-4 py-2 border-r border-gray-400">{item.category}</td>
+          <td className="px-4 py-2 border-r border-gray-400">{item.price}</td>
+          <td className="px-4 py-2 border-r border-gray-400">
+            {item.available ? "Yes" : "No"}
+          </td>
+          <td className="px-4 py-2 flex space-x-2">
+            <button onClick={() => handleEditClick(item)}>
+              <img alt="edit" src="/icons/edit.svg" className="w-6 h-6" />
+            </button>
+            <button onClick={() => handleDeleteClick(item.id)}>
+              <img
+                alt="delete"
+                src="/icons/delete.svg"
+                className="w-6 h-6"
+                style={{
+                  filter:
+                    "invert(20%) sepia(94%) saturate(7496%) hue-rotate(347deg) brightness(102%) contrast(104%)",
+                }}
+              />
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
 
       <div className="m-auto flex justify-end ">
         <Pagination
