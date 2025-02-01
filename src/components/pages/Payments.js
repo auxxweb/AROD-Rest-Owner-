@@ -620,7 +620,14 @@ const Payments = () => {
                   {judge?.status}
                 </td>
                 <td className="px-4 py-2 border-r border-gray-400">
-              {"Export"}
+                <button>
+                    <img
+                      alt="pics"
+                      src="/icons/export.svg"
+                      className="w-6 h-6 rounded-full mr-2"
+                    />   {"Export"}
+                  </button>
+             
                 </td>
               </tr>
             ))

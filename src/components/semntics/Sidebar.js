@@ -92,7 +92,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                       />
                     </svg>
                   </span>
-                  <span  onClick={() => navigate("/zones")} className="text-custom-16 mt-[-3px] text-[#a5a5a5] hover:text-[#F8BF40] ml-4">
+                  <span  onClick={() => navigate("/v-payment-pending")} className="text-custom-16 mt-[-3px] text-[#a5a5a5] hover:text-[#F8BF40] ml-4">
                   Current Orders
                   </span>
                 </div>
@@ -159,7 +159,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                       />
                     </svg>
                   </span>
-                  <span  onClick={() => navigate("/zones")} className="text-custom-16 mt-[-3px] text-[#a5a5a5] hover:text-[#F8BF40] ml-4">
+                  <span  onClick={() => navigate("/menu-category")} className="text-custom-16 mt-[-3px] text-[#a5a5a5] hover:text-[#F8BF40] ml-4">
                    Menu
                   </span>
                 </div>

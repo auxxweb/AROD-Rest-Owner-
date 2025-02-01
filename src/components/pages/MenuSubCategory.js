@@ -196,7 +196,7 @@ const MenuSubCategory = () => {
                   <label
                     htmlFor="zoneName"
                     className="block text-sm font-medium text-gray-700">
-                    Zone Name
+                    Category Name
                   </label>
                   <input
                     type="text"
