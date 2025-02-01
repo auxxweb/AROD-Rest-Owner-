@@ -6,7 +6,11 @@ import { ChevronUpIcon } from "@heroicons/react/24/outline";
 function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
-
+  const handleItemClick = () => {
+    if (window.innerWidth < 1024) {
+      setIsOpen(false);
+    }
+  };
   return (
     <Transition
       show={isOpen}
@@ -21,7 +25,7 @@ function Sidebar({ isOpen, setIsOpen }) {
       <div>
         {/* Close button for mobile */}
         <button
-          className="lg:hidden text-white focus:outline-none absolute right-4 top-4"
+          className="lg:hidden text-black focus:outline-none absolute right-4 top-4"
           onClick={() => setIsOpen(false)}>
           <svg
             className="w-6 h-6"
@@ -66,7 +70,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                 }
               />
             </svg>
-            <span className="text-custom-16 hover:text-[#F8BF40] ml-4">
+            <span onClick={() => handleItemClick} className="text-custom-16 hover:text-[#F8BF40] ml-4">
               Dashboard
             </span>
           </span>
@@ -78,7 +82,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                 <div 
                 style={{...(location?.pathname?.split("/")[1] === "/zones"? {backgroundColor:"#CFCFCF", borderRadius:"5px",padding:"8px 0"}:{})}}
                 className=" flex mr-14">
-                  <span className="ml-[-10px]">
+                  <span onClick={() => handleItemClick} className="ml-[-10px]">
                     <svg
                       width="24"
                       height="20"
@@ -145,7 +149,7 @@ function Sidebar({ isOpen, setIsOpen }) {
             <>
               <Disclosure.Button className="flex items-center justify-between text-custom-16 text-[#909294] hover:text-[#F8BF40] lg:2xl px-4 py-2">
                 <div className=" flex mr-14">
-                  <span className="ml-[-10px]">
+                  <span onClick={() => handleItemClick} className="ml-[-10px]">
                     <svg
                       width="24"
                       height="20"
@@ -220,7 +224,7 @@ function Sidebar({ isOpen, setIsOpen }) {
               />
             </svg>
 
-            <span className="text-custom-16 ml-4">Dishes</span>
+            <span onClick={() => handleItemClick} className="text-custom-16 ml-4">Dishes</span>
           </span>
         </div>
         <div
@@ -252,7 +256,7 @@ function Sidebar({ isOpen, setIsOpen }) {
               />
             </svg>
 
-            <span className="text-custom-16 ml-4">Reports</span>
+            <span onClick={() => handleItemClick} className="text-custom-16 ml-4">Reports</span>
           </span>
         </div>
         {/* <div
