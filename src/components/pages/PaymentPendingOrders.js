@@ -299,7 +299,8 @@ const PaymentPendingOrders = () => {
             </th>
             <th className="px-4 py-4 text-left border-r border-gray-400">Items</th>
             <th className="px-4 py-4 text-left border-r border-gray-400">Payment</th>
-            <th className="px-4 py-4 text-left">Amount</th>
+            <th className="px-4 py-4 text-left border-r border-gray-400">Amount</th>
+            <th className="px-4 py-4 text-left">Status</th>
           </tr>
         </thead>
         <tbody className="border-[2px] border-opacity-70 border-[#969696]">
@@ -398,6 +399,19 @@ const PaymentPendingOrders = () => {
                 </td>
                 <td className="px-4 py-2 border-r border-gray-400">
                   {zone?.amount}
+                </td>
+                <td className="px-4 py-2 border-r border-gray-400">
+                <button
+                    // onClick={() => handleShowBlockJudgePopup(judge?._id)}
+                    className={`py-2 px-5 flex space-x-2 items-center ${
+                      // odd
+                        // " text-[#FF0404] border-[#FF0404]"
+                         "  border-[#1ea524] text-[#1ea524]"
+                    } rounded-full  border `}>
+                    {" "}
+                    <span>{ "Mark as Paid"}</span>
+                    {/* <BiSolidDownArrow className="text-black" /> */}
+                  </button>
                 </td>
               </tr>
             ))
