@@ -16,7 +16,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const BarChart = () => {
   // Static data for the chart
   const barData = {
-    labels: ["ABC Foods", "XYZ    Supplies", "Gourmet Plus", "Fresh Bites", "Tasty Treats"],
+    labels: ["Bergers", "Sandwiches", "Pizzas", "Fresh Bites", "Desserts"],
     datasets: [
       {
         label: "Dishes",
