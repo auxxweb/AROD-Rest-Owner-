@@ -582,7 +582,7 @@ const Payments = () => {
           ) : (
                     tableStatus?.map((judge, index) => (
               <tr
-                className="odd:bg-[#FFFC64] even:bg-grey border-[2px] border-opacity-50 border-[#9e9696]"
+                className="odd:bg-[#FCD199] even:bg-grey border-[2px] border-opacity-50 border-[#9e9696]"
                 key={index}
               >
                 <td

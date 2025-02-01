@@ -313,7 +313,7 @@ const Bundles = () => {
           <tbody className="border-[2px] border-opacity-50 border-[#969696]">
             {data?.bundles?.map((bundle, index) => (
               <tr
-                className="odd:bg-[#FFFC64] even:bg-grey border-[2px] border-opacity-50 border-[#9e9696]"
+                className="odd:bg-[#FCD199] even:bg-grey border-[2px] border-opacity-50 border-[#9e9696]"
                 key={index}
               >
                 <td
