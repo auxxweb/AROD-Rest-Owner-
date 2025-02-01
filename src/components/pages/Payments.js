@@ -377,7 +377,7 @@ const Payments = () => {
                           {zonesList.map((zone) => (
                             <li
                               key={zone.value}
-                              className="bg-[#1DB290] flex items-center justify-between text-white rounded-full py-0.5 px-2 text-xs font-light"
+                              className="bg-[#000000] flex items-center justify-between text-white rounded-full py-0.5 px-2 text-xs font-light"
                             >
                               <span>{zone.label}</span>
                               <button

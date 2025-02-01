@@ -4,7 +4,7 @@ import DashBoard3Chart from "../DashBoard3Chart";
 
 const DashBoard = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-[#d3d3d3]">
         {/* <DashBoard1Top /> */}
       <div className=" w-full">
         <DashBoardSection2 />

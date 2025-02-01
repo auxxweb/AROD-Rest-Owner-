@@ -356,7 +356,7 @@ const Zones = () => {
                                     className={`py-2 px-5 flex space-x-2 items-center ${
                                       zone?.status
                                         ? " text-[#FF0404] border-[#FF0404]"
-                                        : "  border-[#1DB290] text-[#1DB290]"
+                                        : "  border-[#000000] text-[#000000]"
                                     } rounded-full  border `}
                                   >
                                     {" "}

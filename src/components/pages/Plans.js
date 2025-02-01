@@ -347,7 +347,7 @@ const Plans = () => {
                           {zonesList.map((zone) => (
                             <li
                               key={zone.value}
-                              className="bg-[#1DB290] flex items-center justify-between text-white rounded-full py-0.5 px-2 text-xs font-light"
+                              className="bg-[#000000] flex items-center justify-between text-white rounded-full py-0.5 px-2 text-xs font-light"
                             >
                               <span>{zone.label}</span>
                               <button
@@ -670,7 +670,7 @@ const Plans = () => {
                     className={`py-2 px-5 flex space-x-2 items-center ${
                       judge?.status
                         ? " text-[#FF0404] border-[#FF0404]"
-                        : "  border-[#1DB290] text-[#1DB290]"
+                        : "  border-[#000000] text-[#000000]"
                     } rounded-full  border `}
                   >
                     {" "}
