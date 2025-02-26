@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React from "react";
 import { Disclosure, Transition } from "@headlessui/react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -70,7 +71,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                 }
               />
             </svg>
-            <span onClick={() => handleItemClick} className="text-custom-16 hover:text-[#F8BF40] ml-4">
+            <span onClick={() => handleItemClick()} className="text-custom-16 hover:text-[#F8BF40] ml-4">
               Dashboard
             </span>
           </span>
@@ -82,7 +83,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                 <div 
                 style={{...(location?.pathname?.split("/")[1] === "/zones"? {backgroundColor:"#CFCFCF", borderRadius:"5px",padding:"8px 0"}:{})}}
                 className=" flex mr-14">
-                  <span onClick={() => handleItemClick} className="ml-[-10px]">
+                  <span onClick={() => handleItemClick()} className="ml-[-10px]">
                     <svg
                       width="24"
                       height="20"
@@ -122,19 +123,19 @@ function Sidebar({ isOpen, setIsOpen }) {
                     Ongoing Orders
                   </li> */}
                   <li
-                    onClick={() => navigate("/v-completed")}
+                    onClick={() => {navigate("/v-completed"),handleItemClick()}}
                     className="cursor-pointer text-[#909294] hover:text-[#F8BF40]"
                   >
                    Paid
                   </li>
                   <li
-                    onClick={() => navigate("/v-payment-pending")}
+                    onClick={() => {navigate("/v-payment-pending"),handleItemClick()}}
                     className="cursor-pointer text-[#909294] hover:text-[#F8BF40]"
                   >
                   Payment Pending 
                   </li>
                   <li
-                    onClick={() => navigate("/v-cancelled")}
+                    onClick={() => {navigate("/v-cancelled"),handleItemClick()}}
                     className="cursor-pointer text-[#909294] hover:text-[#F8BF40]"
                   >
                     Cancelled Orders
@@ -149,7 +150,7 @@ function Sidebar({ isOpen, setIsOpen }) {
             <>
               <Disclosure.Button className="flex items-center justify-between text-custom-16 text-[#909294] hover:text-[#F8BF40] lg:2xl px-4 py-2">
                 <div className=" flex mr-14">
-                  <span onClick={() => handleItemClick} className="ml-[-10px]">
+                  <span onClick={() => handleItemClick()} className="ml-[-10px]">
                     <svg
                       width="24"
                       height="20"
@@ -163,7 +164,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                       />
                     </svg>
                   </span>
-                  <span  onClick={() => navigate("/menu-category")} className="text-custom-16 mt-[-3px] text-[#a5a5a5] hover:text-[#F8BF40] ml-4">
+                  <span  onClick={() => {navigate("/menu-category"),handleItemClick()}} className="text-custom-16 mt-[-3px] text-[#a5a5a5] hover:text-[#F8BF40] ml-4">
                    Menu
                   </span>
                 </div>
@@ -177,13 +178,13 @@ function Sidebar({ isOpen, setIsOpen }) {
               <Disclosure.Panel className="bg-[#ffff] text-custom-16 rounded-md px-4 py-2">
                 <ul className="list-disc list-inside">
                   <li
-                    onClick={() => navigate("/menu-category")}
+                    onClick={() => {navigate("/menu-category"),handleItemClick()}}
                     className="cursor-pointer text-[#000000] hover:text-[#F8BF40]"
                   >
                     Category
                   </li>
                   <li
-                    onClick={() => navigate("/menu-sub-category")}
+                    onClick={() => {navigate("/menu-sub-category"),handleItemClick()}}
                     className="cursor-pointer text-[#909294] hover:text-[#F8BF40]"
                   >
                     Sub-Category
@@ -196,7 +197,7 @@ function Sidebar({ isOpen, setIsOpen }) {
 
        
         <div
-          onClick={() => navigate("/dishes")}
+          onClick={() =>{ navigate("/dishes"),handleItemClick()}}
           className={`cursor-pointer flex items-center ${
             location?.pathname?.split("/")[1] === "dishes"
               ? "text-[#000000]"
@@ -224,11 +225,11 @@ function Sidebar({ isOpen, setIsOpen }) {
               />
             </svg>
 
-            <span onClick={() => handleItemClick} className="text-custom-16 ml-4">Dishes</span>
+            <span onClick={() => handleItemClick()} className="text-custom-16 ml-4">Dishes</span>
           </span>
         </div>
         <div
-          onClick={() => navigate("/payments")}
+          onClick={() => {navigate("/payments"),handleItemClick()}}
           className={`cursor-pointer flex items-center ${
             location?.pathname?.split("/")[1] === "payments"
               ? "text-[#000000]"
@@ -256,7 +257,7 @@ function Sidebar({ isOpen, setIsOpen }) {
               />
             </svg>
 
-            <span onClick={() => handleItemClick} className="text-custom-16 ml-4">Reports</span>
+            <span onClick={() => handleItemClick()} className="text-custom-16 ml-4">Reports</span>
           </span>
         </div>
         {/* <div
